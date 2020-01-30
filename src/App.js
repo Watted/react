@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import SignIn from "./Components/SignIn/SignIn";
+import Table from "./Components/Table/Table";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSignIn: false,
+        }
+
+
+    }
+
+
+    OnSuccessSignIn = (isSignIn) => {
+        console.log("aaaa")
+        this.setState({isSignIn});
+    };
+
+
+    render() {
+
+        return (
+            this.state.isSignIn === true ?
+               <Table/>
+                :
+                <div className="App">
+                    <SignIn onChangeSignIn={(boolean) => this.OnSuccessSignIn(boolean)}/>
+                </div>
+        );
+    }
 }
 
 export default App;
